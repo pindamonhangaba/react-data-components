@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-
+import Grommet, {Button, Box} from 'grommet';
 // Used to cancel events.
 var preventDefault = e => e.preventDefault();
 
@@ -54,13 +54,11 @@ export default class Pagination extends Component {
         btnEvent = this.onChangePage.bind(this, i);
       }
       buttons.push(
-        <li key={i} className={isCurrent ? 'active' : null}>
-          <a role="button" href="#" onClick={btnEvent} tabIndex="0">
-            <span>{i + 1}</span>
-            {isCurrent ?
-              <span className="sr-only">(current)</span> : null}
-          </a>
-        </li>
+        <Box key={i} className={isCurrent ? 'active' : null} align="center">
+          <Button type="icon" onClick={isCurrent ? null : btnEvent} className={isCurrent ? " current " : ""}>
+            <span className="button__icon">{i + 1}</span>
+          </Button>
+        </Box>
       );
     }
 
@@ -83,47 +81,36 @@ export default class Pagination extends Component {
     }
 
     buttons = [
-      <li key="first" className={!isNotFirst ? 'disabled' : null}>
-        <a role="button" href="#" tabIndex="0"
-          onClick={firstHandler}
-          aria-disabled={!isNotFirst}
-          aria-label="First">
-          <span className="fa fa-angle-double-left" aria-hidden="true" />
-        </a>
-      </li>,
-      <li key="prev" className={!isNotFirst ? 'disabled' : null}>
-        <a role="button" href="#" tabIndex="0"
-          onClick={prevHandler}
-          aria-disabled={!isNotFirst}
-          aria-label="Previous">
-          <span className="fa fa-angle-left" aria-hidden="true" />
-        </a>
-      </li>,
+      <Box key="first" className={!isNotFirst ? 'disabled' : null}>
+        <Button type="icon" onClick={isNotFirst ? firstHandler : null}>
+          <Grommet.Icons.Base.Rewind colorIndex="brand" />
+        </Button>
+      </Box>,
+      <Box key="prev" className={!isNotFirst ? 'disabled' : null}>
+        <Button type="icon" onClick={isNotFirst ? prevHandler : null}>
+          <Grommet.Icons.Base.CaretPrevious colorIndex="brand" />
+        </Button>
+      </Box>,
     ].concat(buttons);
 
     buttons = buttons.concat([
-      <li key="next" className={!isNotLast ? 'disabled' : null}>
-        <a role="button" href="#" tabIndex="0"
-          onClick={nextHandler}
-          aria-disabled={!isNotLast}
-          aria-label="Next">
-          <span className="fa fa-angle-right" aria-hidden="true" />
-        </a>
-      </li>,
-      <li key="last" className={!isNotLast ? 'disabled' : null}>
-        <a role="button" href="#" tabIndex="0"
-          onClick={lastHandler}
-          aria-disabled={!isNotLast}
-          aria-label="Last">
-          <span className="fa fa-angle-double-right" aria-hidden="true" />
-        </a>
-      </li>,
+      <Box key="next" className={!isNotLast ? 'disabled' : null}>
+        <Button type="icon" onClick={isNotLast ? nextHandler : null}>
+          <Grommet.Icons.Base.CaretNext colorIndex="brand" />
+        </Button>
+      </Box>,
+      <Box key="last" className={!isNotLast ? 'disabled' : null}>
+        <Button type="icon"
+          onClick={isNotLast ? lastHandler : null}>
+          <Grommet.Icons.Base.FastForward colorIndex="brand" />
+        </Button>
+      </Box>,
     ]);
 
     return (
-      <ul className={this.props.className} aria-label="Pagination">
-        {buttons}
-      </ul>
+      <Box className={this.props.className} aria-label="Pagination" full="horizontal" justify="end" align="end" direction="row">
+        <Box full={false} direction="row">{buttons}</Box>
+      </Box>
     );
   }
 }

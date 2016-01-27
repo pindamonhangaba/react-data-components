@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Grommet, {Search} from 'grommet';
 class SearchField extends Component {
 
   constructor(...props) {
@@ -7,21 +7,17 @@ class SearchField extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  onChange(e) {
-    this.props.onChange(e.target.value);
+  onChange(value) {
+    this.props.onChange(value);
   }
 
   render() {
     return (
-      <div>
-        <label htmlFor={this.props.id}>{this.props.label}</label>
-        <input
-          id={this.props.id}
-          type="search"
-          value={this.props.value}
-          onChange={this.onChange}
-        />
-      </div>
+        <Search id={this.props.id}
+                inline={true}
+                placeHolder="Search"
+                value={this.props.value}
+                onChange={this.onChange} />
     );
   }
 
