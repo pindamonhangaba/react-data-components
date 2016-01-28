@@ -107,7 +107,7 @@ export default class Table extends Component {
 
   render() {
     let { columns, keys, buildRowOptions, sortBy, onSort } = this.props;
-    let caretStyle = {height: "12px", width: "12px", display: "none"};
+    let caretStyle = {height: '12px', width: '12px', display: 'none'};
     let smallCaretUp = <Grommet.Icons.Base.CaretUp colorIndex="brand" style={caretStyle} />;
     let smallCaretDown = <Grommet.Icons.Base.CaretDown colorIndex="brand" style={caretStyle} />;
 
@@ -129,10 +129,10 @@ export default class Table extends Component {
           role="columnheader"
           scope="col"
           {...sortProps}>
-          <Box direction="row" align="center" justify="between" style={{display: "none"}}>
-            <span style={{lineHeight: "48px"}}>{col.title}</span>
+          <Box direction="row" align="center" justify="between" style={{display: 'none'}}>
+            <span style={{lineHeight: '48px'}}>{col.title}</span>
             <Box direction="column">
-              {typeof order !== "undefined" ? order === "ascending" ? smallCaretUp : (order === "descending" ? smallCaretDown: ([smallCaretUp, smallCaretDown])) : null }
+              {typeof order !== 'undefined' ? order === 'ascending' ? smallCaretUp : (order === 'descending' ? smallCaretDown: ([smallCaretUp, smallCaretDown])) : null }
             </Box>
           </Box>
         </th>

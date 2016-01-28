@@ -55,7 +55,7 @@ export default class Pagination extends Component {
       }
       buttons.push(
         <Box key={i} className={isCurrent ? 'active' : null} align="center">
-          <Button type="icon" onClick={isCurrent ? null : btnEvent} className={isCurrent ? " current " : ""}>
+          <Button type="icon" onClick={isCurrent ? null : btnEvent} className={isCurrent ? ' current ' : ''}>
             <span className="button__icon">{i + 1}</span>
           </Button>
         </Box>
